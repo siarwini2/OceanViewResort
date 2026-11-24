@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Ocean View Resort</title>
+</head>
+<body>
+  {% if user.is_authenticated %}
+    <p>
+      Logged in as <strong>{{ user.username }}</strong> ({{ user.get_role_display }})
+      <form method="post" action="{% url 'accounts:logout' %}" style="display:inline">
+        {% csrf_token %}
+        <button type="submit">Log out</button>
+      </form>
+    </p>
+  {% else %}
+    <p>Not logged in</p>
+  {% endif %}
+  <hr>
+  {% block content %}{% endblock %}
+</body>
+</html>
